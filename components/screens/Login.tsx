@@ -1,24 +1,28 @@
 import React from "react";
-import { Dimensions, TextInput, TouchableOpacity } from "react-native";
+import { TextInput, TouchableOpacity } from "react-native";
 import { View, Text } from "react-native";
 import ArrowRight from "./svg/ArrowRight";
 import User from "./svg/User";
 import Password from "./svg/Password";
-import CircleOrange from "./svg/CircleOrange";
+import ColorCircle from "./svg/Circle";
+import { screenDimensions, mainStyles } from "../styles/mainStylesheet";
 
 const Login = ({ navigation }: any) => {
-	const sw = Dimensions.get("window").width;
-	const sh = Dimensions.get("window").height;
+	const { ww, wh } = screenDimensions();
 
 	return (
-		<View style={{ display: "flex", justifyContent: "center", alignItems: "center", height: sh, backgroundColor: "#E4E6F1" }}>
-			<View style={{ width: 0.8 * sw, maxWidth: "300px", display: "flex", justifyContent: "space-between", height: 0.25 * sh }}>
+		<View style={mainStyles().backgroundContainer}>
+			<View style={{ width: 0.95 * ww, maxWidth: "300px", display: "flex", justifyContent: "space-between", height: 0.4 * wh, zIndex: 20 }}>
 				<View style={{ display: "flex" }}>
 					<View style={{ display: "flex", marginVertical: 5, flexDirection: "row" }}>
 						<User style={{ padding: "10px" }} />
 						<View style={{ display: "flex", justifyContent: "center" }}>
 							<Text style={{ fontFamily: "Inter_600SemiBold", marginVertical: 5, fontSize: 12, color: "#FF9472" }}>EMAIL</Text>
-							<TextInput style={{ borderColor: "#FF9472", borderWidth: 2, borderRadius: 100, paddingHorizontal: "10px", paddingVertical: "5px", fontFamily: "Inter_700Bold", color: "#1B1C22", fontSize: 12 }} placeholder="johndoe@email.com" />
+							<TextInput
+								style={{ borderColor: "#FF9472", borderWidth: 2, borderRadius: 100, paddingHorizontal: "10px", paddingVertical: "5px", fontFamily: "Inter_700Bold", color: "#1B1C22", fontSize: 12 }}
+								placeholder="johndoe@email.com"
+								placeholderTextColor="#A5A5A5"
+							/>
 						</View>
 					</View>
 					<View style={{ display: "flex", flexDirection: "row" }}>
@@ -29,6 +33,7 @@ const Login = ({ navigation }: any) => {
 								secureTextEntry={true}
 								style={{ borderColor: "#FF9472", borderWidth: 2, borderRadius: 100, paddingHorizontal: "10px", paddingVertical: "5px", fontFamily: "Inter_700Bold", color: "#1B1C22", fontSize: 12 }}
 								placeholder="password1234"
+								placeholderTextColor="#A5A5A5"
 							/>
 						</View>
 					</View>
@@ -46,17 +51,22 @@ const Login = ({ navigation }: any) => {
 						justifyContent: "space-around",
 						flexDirection: "row",
 						alignSelf: "flex-end",
+						shadowColor: "#000000",
+						shadowOffset: { width: -2, height: 4 },
+						shadowOpacity: 0.2,
+						shadowRadius: 16,
 					}}
 				>
 					<Text style={{ fontFamily: "Inter_700Bold", fontSize: 12 }}>LOGIN</Text>
 					<ArrowRight />
 				</TouchableOpacity>
 			</View>
-			<View style={{ position: "absolute", top: 0.1 * sh, width: 0.8 * sw, maxWidth: "300px" }}>
+			<View style={{ position: "absolute", top: 0.1 * wh, width: 0.8 * ww, maxWidth: "300px", zIndex: 20 }}>
 				<Text style={{ fontFamily: "Inter_900Black", fontSize: 40 }}>Login</Text>
 				<Text style={{ fontFamily: "Inter_400Regular", fontSize: 12 }}>Please sign in to continue</Text>
 			</View>
-			<CircleOrange style={{ position: "absolute", right: 0, top: 0 }} />
+			<ColorCircle color="#FF9472" style={{ position: "absolute", right: -66.95, top: -70, zIndex: 10 }} />
+			<ColorCircle color="#717EC3" style={{ position: "absolute", left: -118, top: wh * 0.6, zIndex: 10 }} />
 		</View>
 	);
 };
