@@ -22,5 +22,9 @@ export const mainStyles = () => {
 
 	return StyleSheet.create({
 		backgroundContainer: { display: "flex", justifyContent: "center", alignItems: "center", height: wh, width: ww, backgroundColor: "#E4E6F1", overflow: "hidden" },
+		itemHeader: { fontFamily: "Inter_500Medium", fontSize: 14, color: "#1B1C22" },
+		itemBody: { fontFamily: "Inter_200ExtraLight", fontSize: 12, color: "#1B1C22" },
+		itemMainContainer: { display: "flex", flexDirection: "row", marginVertical: 10, justifyContent: "space-between", width: "90%", maxWidth: 400 },
+		itemTextContainer: { display: "flex", flexDirection: "column" },
 	});
 };

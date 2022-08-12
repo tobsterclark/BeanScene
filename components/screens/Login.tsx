@@ -39,7 +39,7 @@ const Login = ({ navigation }: any) => {
 					</View>
 				</View>
 				<TouchableOpacity
-					onPress={() => navigation.navigate("Home")}
+					onPress={() => navigation.navigate("Main")}
 					style={{
 						width: "fit-content",
 						paddingVertical: "7px",
