@@ -45,7 +45,7 @@ const MainTabs = ({ navigation }: any) => {
 				headerLeft: () => null,
 				headerTitleStyle: { fontFamily: "Inter_700Bold", fontSize: 24 },
 				headerTransparent: true,
-				tabBarStyle: { borderTopWidth: 0, backgroundColor: "#E4E6F1", height: 100, elevation: 0 },
+				tabBarStyle: { borderTopWidth: 0, backgroundColor: "#E4E6F1", height: 100 },
 			}}
 		>
 			<Tabs.Screen
