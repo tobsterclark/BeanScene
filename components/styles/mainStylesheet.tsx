@@ -24,17 +24,20 @@ export const colours = {
 	black: "#1B1C22",
 	green: "#3E885B",
 	red: "#C20114",
+	orange: "#FF9472",
 };
 
 export const mainStyles = () => {
 	const { ww, wh } = screenDimensions();
 
 	return StyleSheet.create({
-		backgroundContainer: { display: "flex", justifyContent: "center", alignItems: "center", height: wh, width: ww, backgroundColor: "#E4E6F1", overflow: "hidden" },
-		itemHeader: { fontFamily: "Inter_500Medium", fontSize: 14, color: "#1B1C22" },
-		itemBody: { fontFamily: "Inter_200ExtraLight", fontSize: 12, color: "#1B1C22", flex: 1 },
+		backgroundContainer: { display: "flex", justifyContent: "center", alignItems: "center", height: wh, width: ww, backgroundColor: colours.background, overflow: "hidden" },
+		itemHeader: { fontFamily: "Inter_500Medium", fontSize: 14, color: colours.black },
+		itemBody: { fontFamily: "Inter_200ExtraLight", fontSize: 12, color: colours.black, flex: 1 },
 		itemMainContainer: { display: "flex", flexDirection: "row", margin: 10, justifyContent: "space-between", width: "90%", maxWidth: 400 },
 		itemTextContainer: { display: "flex", flexDirection: "column", width: "70%" },
-		itemTextOverflowContainer: { flexGrow: 1, flexDirection: "row" },
+
+		overlayButton: { position: "absolute", bottom: 120, width: "80%", zIndex: 100, backgroundColor: colours.black, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", paddingVertical: 10, borderRadius: 16 },
+		overlayButtonText: { color: "#FFFFFF", fontFamily: "Inter_700Bold", fontSize: 20 },
 	});
 };

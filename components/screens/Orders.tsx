@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { mainStyles } from "../styles/mainStylesheet";
+import { colours, mainStyles } from "../styles/mainStylesheet";
 import StatusCircle from "./svg/StatusCircle";
 
 const Orders = () => {
@@ -12,13 +12,13 @@ const Orders = () => {
 		];
 
 		const output = fetchData.map((data, index) => {
-			var statusColor = "#FF9472";
+			var statusColor = colours.orange;
 			var statusMsg = "Order is ready for service";
 			if (data.status === "completed") {
-				statusColor = "#3E885B";
+				statusColor = colours.green;
 				statusMsg = "Order is completed";
 			} else if (data.status === "cooking") {
-				statusColor = "#C20114";
+				statusColor = colours.red;
 				statusMsg = "Order is being cooked";
 			}
 			return (

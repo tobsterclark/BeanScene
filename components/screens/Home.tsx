@@ -55,11 +55,9 @@ const Home = () => {
 	};
 
 	return (
-		<View style={[mainStyles().backgroundContainer, { justifyContent: "flex-start", paddingVertical: 70 }]}>
-			<TouchableOpacity
-				style={{ position: "absolute", bottom: 120, width: "80%", zIndex: 100, backgroundColor: colours.black, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", paddingVertical: 10, borderRadius: 16 }}
-			>
-				<Text style={{ color: "#FFFFFF", fontFamily: "Inter_700Bold", fontSize: 20 }}>Complete</Text>
+		<View style={[mainStyles().backgroundContainer, { justifyContent: "flex-start", paddingVertical: 70, overflow: "hidden" }]}>
+			<TouchableOpacity style={styles.overlayButton}>
+				<Text style={styles.overlayButtonText}>Complete</Text>
 			</TouchableOpacity>
 			{categories()}
 			<FlatList
