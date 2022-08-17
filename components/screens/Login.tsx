@@ -22,7 +22,7 @@ const Login = ({ navigation }: any) => {
 							<TextInput
 								style={{ borderColor: colours.primary, borderWidth: 2, borderRadius: 100, paddingHorizontal: "10px", paddingVertical: "5px", fontFamily: "Inter_700Bold", color: colours.black, fontSize: 12 }}
 								placeholder="johndoe@email.com"
-								placeholderTextColor="#A5A5A5"
+								placeholderTextColor={colours.grey}
 							/>
 						</View>
 					</View>
@@ -34,7 +34,7 @@ const Login = ({ navigation }: any) => {
 								secureTextEntry={true}
 								style={{ borderColor: colours.primary, borderWidth: 2, borderRadius: 100, paddingHorizontal: "10px", paddingVertical: "5px", fontFamily: "Inter_700Bold", color: colours.black, fontSize: 12 }}
 								placeholder="password1234"
-								placeholderTextColor="#A5A5A5"
+								placeholderTextColor={colours.grey}
 							/>
 						</View>
 					</View>
