@@ -1,10 +1,10 @@
 import React from "react";
 import { TextInput, TouchableOpacity } from "react-native";
 import { View, Text } from "react-native";
-import ArrowRight from "./svg/ArrowRight";
-import User from "./svg/User";
-import Password from "./svg/Password";
-import ColorCircle from "./svg/Circle";
+import ArrowRight from "../svgs/ArrowRight";
+import User from "../svgs/User";
+import Password from "../svgs/Password";
+import ColorCircle from "../svgs/Circle";
 import { screenDimensions, mainStyles, colours } from "../styles/mainStylesheet";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 

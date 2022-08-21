@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { View } from "react-native";
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
@@ -6,13 +6,18 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-nav
 import Login from "./components/screens/Login";
 import Home from "./components/screens/Home";
 import { useFonts, Inter_200ExtraLight, Inter_900Black, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_500Medium } from "@expo-google-fonts/inter";
-import ShoppingBag from "./components/screens/svg/shoppingBag";
-import Timer from "./components/screens/svg/timer";
+import ShoppingBag from "./components/svgs/shoppingBag";
+import Timer from "./components/svgs/timer";
 import Orders from "./components/screens/Orders";
+import { foodItem } from "./components/types/Types";
+import { OrderContext } from "./components/contexts/OrderContext";
+import Checkout from "./components/screens/Checkout";
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
 export default function App() {
+	const [items, setItems] = useState<foodItem[]>([]);
+	const [notes, setNotes] = useState<string>("");
 	let [loaded] = useFonts({
 		Inter_200ExtraLight,
 		Inter_900Black,
@@ -22,21 +27,33 @@ export default function App() {
 		Inter_500Medium,
 	});
 
+	const updateItems = (item: foodItem) => {
+		const newItems = [...items];
+		newItems.push(item);
+		setItems(newItems);
+	};
+
 	if (!loaded) return null;
 	return (
-		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Login" screenOptions={{ headerTitleAlign: "center", headerLeft: () => null, headerTitleStyle: { fontFamily: "Inter_700Bold", fontSize: 24 }, headerTransparent: true }}>
-				<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-				<Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
-				<Stack.Screen name="Checkout" component={Home} />
-			</Stack.Navigator>
-		</NavigationContainer>
+		<OrderContext.Provider
+			value={{
+				items,
+				updateItems: updateItems,
+				orderNotes: { notes: notes, setNotes: setNotes },
+			}}
+		>
+			<NavigationContainer>
+				<Stack.Navigator initialRouteName="Login" screenOptions={{ headerTitleAlign: "center", headerLeft: () => null, headerTitleStyle: { fontFamily: "Inter_700Bold", fontSize: 24 }, headerTransparent: true }}>
+					<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+					<Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
+					<Stack.Screen name="Checkout" component={Checkout} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</OrderContext.Provider>
 	);
 }
 
 const MainTabs = ({ navigation }: any) => {
-	const initialParams = { MainNavigation: navigation };
-
 	return (
 		<Tabs.Navigator
 			initialRouteName="New Order"
@@ -51,7 +68,6 @@ const MainTabs = ({ navigation }: any) => {
 			<Tabs.Screen
 				name="New Order"
 				component={Home}
-				initialParams={initialParams}
 				options={{
 					tabBarShowLabel: false,
 					tabBarIcon: ({ focused, color }) => {
@@ -64,7 +80,6 @@ const MainTabs = ({ navigation }: any) => {
 			<Tabs.Screen
 				name="Orders"
 				component={Orders}
-				initialParams={initialParams}
 				options={{
 					tabBarShowLabel: false,
 					tabBarIcon: ({ focused, color }) => {

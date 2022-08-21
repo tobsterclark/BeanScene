@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { colours, mainStyles } from "../styles/mainStylesheet";
-import StatusCircle from "./svg/StatusCircle";
+import StatusCircle from "../svgs/StatusCircle";
 
 const Orders = () => {
 	const allOrders = () => {
