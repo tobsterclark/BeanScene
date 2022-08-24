@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { FlatList, Modal, StyleProp, Text, TextInput, TouchableOpacity, View, ViewStyle } from "react-native";
 import { OrderContext } from "../contexts/OrderContext";
 import { mainStyles, screenDimensions, colours } from "../styles/mainStylesheet";
+import ArrowLeft from "../svgs/ArrowLeft";
 import PlusCircle from "../svgs/PlusCircle";
 import { foodItem } from "../types/Types";
 
@@ -69,6 +70,7 @@ const Home = ({ navigation }: any) => {
 
 		output.unshift(
 			<TouchableOpacity
+				key="all"
 				style={[{ padding: 5 }, currentCategory === "All" ? { borderBottomWidth: 1 } : {}]}
 				onPress={() => {
 					setCurrentCategory("All");
@@ -82,12 +84,12 @@ const Home = ({ navigation }: any) => {
 	};
 
 	const confirmChoice = () => {
-		orderContext.updateItems(currentItem);
+		orderContext.addItems(currentItem);
 		setModalView(!modalView);
 	};
 
 	const complete = () => {
-		// Alert needed, preferably toast
+		// Alert needed, preferably a toast
 		if (orderContext.items.length === 0) return false;
 		navigation.navigate("Checkout");
 	};
@@ -117,16 +119,18 @@ const Home = ({ navigation }: any) => {
 						<Text style={styles.overlayButtonText}>Add To Order</Text>
 					</TouchableOpacity>
 
-					<View style={{ display: "flex", flexDirection: "row" }}>
+					<View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", alignItems: "center" }}>
 						<TouchableOpacity
+							style={{ padding: 5 }}
 							onPress={() => {
 								setModalView(!modalView);
 								updateCurrentItem("");
 							}}
 						>
-							<Text>back</Text>
+							<ArrowLeft stroke={colours.black} />
 						</TouchableOpacity>
 						<Text style={styles.modalTitle}>Add {currentItem.name} to order</Text>
+						<ArrowLeft stroke={"transparent"} style={{ padding: 5 }} />
 					</View>
 					<View style={{ width: "100%", paddingHorizontal: 20, display: "flex", alignItems: "flex-start" }}>
 						<Text style={styles.modalHeader}>Item Details</Text>

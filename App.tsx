@@ -27,9 +27,21 @@ export default function App() {
 		Inter_500Medium,
 	});
 
-	const updateItems = (item: foodItem) => {
+	const addItems = (item: foodItem) => {
 		const newItems = [...items];
 		newItems.push(item);
+		setItems(newItems);
+	};
+
+	const deleteItems = (index: number) => {
+		const newItems: foodItem[] = [...items];
+		newItems.splice(index, 1);
+		setItems(newItems);
+	};
+
+	const updateItem = (index: number, text: string) => {
+		const newItems: foodItem[] = [...items];
+		newItems[index].notes = text;
 		setItems(newItems);
 	};
 
@@ -38,7 +50,9 @@ export default function App() {
 		<OrderContext.Provider
 			value={{
 				items,
-				updateItems: updateItems,
+				addItems: addItems,
+				updateItem: updateItem,
+				deleteItems: deleteItems,
 				orderNotes: { notes: notes, setNotes: setNotes },
 			}}
 		>
