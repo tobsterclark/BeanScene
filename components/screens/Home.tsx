@@ -9,6 +9,7 @@ import { foodItem } from "../types/Types";
 const Home = ({ navigation }: any) => {
 	const orderContext = useContext(OrderContext);
 	const [foodOptions, setFoodOptions] = useState("");
+	const [allFoods, setAllFoods] = useState<foodItem[]>([]);
 
 	const { ww, wh } = screenDimensions();
 	const styles = mainStyles();
@@ -32,18 +33,22 @@ const Home = ({ navigation }: any) => {
 		else setFlatListStyle({ contentContainerStyle: { display: "flex", justifyContent: "center", alignItems: "center" } });
 	}, [ww]);
 
+	useEffect(() => {
+		fetchFoods();
+	}, []);
+
 	// Two API references
 	const fetchFoods = () => {
-		return [
-			{ name: "BLT", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Drinks"] },
-			{ name: "BLT", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Entrees"] },
-			{ name: "BLT", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Mains"] },
-			{ name: "BLT", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Mains"] },
-			{ name: "BLT", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Mains"] },
-			{ name: "Random", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Mains"] },
-			{ name: "BLT", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Mains"] },
-			{ name: "BLT", cost: 16, ingredients: ["Bacon", "Lettuce", "Tomato", "Mayonnaise", "Cucumber"], calories: 6000, dietary: "VG", availability: "available", categories: ["All", "Mains"] },
-		].filter((item: foodItem) => {
+		fetch("https://localhost:44378/api/Food")
+			.then((response) => response.json())
+			.then((json) => {
+				console.log(json);
+				setAllFoods(json);
+			});
+	};
+
+	const filterFoods = () => {
+		return allFoods.filter((item: foodItem) => {
 			if (item.categories.includes(currentCategory) && item.availability === "available") return true;
 			return false;
 		});
@@ -150,7 +155,7 @@ const Home = ({ navigation }: any) => {
 			{categories()}
 			<FlatList
 				key={"flatList" + numColumns}
-				data={fetchFoods()}
+				data={filterFoods()}
 				numColumns={numColumns}
 				style={{ width: ww }}
 				{...flatListStyle}
