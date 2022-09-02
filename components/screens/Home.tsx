@@ -106,8 +106,8 @@ const Home = ({ navigation }: any) => {
 				<View
 					style={[
 						{ position: "absolute", display: "flex", justifyContent: "flex-start", alignItems: "center", bottom: 0, backgroundColor: colours.primary, width: ww, borderRadius: 16 },
-						wh > 550 ? { height: 0.8 * wh } : { height: wh },
-						ww > 800 ? { height: wh } : { height: 0.8 * wh },
+						wh > 550 ? { height: 0.8 * wh } : { height: wh, borderRadius: 0 },
+						ww > 800 ? { height: wh, borderRadius: 0 } : { height: 0.8 * wh },
 					]}
 				>
 					<TouchableOpacity

@@ -60,12 +60,12 @@ const Checkout = ({ navigation }: any) => {
 				<View
 					style={[
 						{ position: "absolute", display: "flex", justifyContent: "flex-start", alignItems: "center", bottom: 0, backgroundColor: colours.primary, width: ww, borderRadius: 16 },
-						wh > 550 ? { height: 0.8 * wh } : { height: wh },
-						ww > 800 ? { height: wh } : { height: 0.8 * wh },
+						wh > 550 ? { height: 0.8 * wh } : { height: wh, borderRadius: 0 },
+						ww > 800 ? { height: wh, borderRadius: 0 } : { height: 0.8 * wh },
 					]}
 				>
 					<TouchableOpacity
-						style={[styles.overlayButton, wh > 650 ? { bottom: 100 } : { bottom: 20 }]}
+						style={[styles.overlayButton, wh > 700 ? { bottom: 100 } : { bottom: 20 }]}
 						onPress={() => {
 							confirmEdits();
 						}}
@@ -103,7 +103,7 @@ const Checkout = ({ navigation }: any) => {
 					</View>
 				</View>
 			</Modal>
-			<TouchableOpacity style={styles.overlayButton} onPress={() => confirmOrder()}>
+			<TouchableOpacity style={[styles.overlayButton, wh > 700 ? { bottom: 100 } : { bottom: 20 }]} onPress={() => confirmOrder()}>
 				<Text style={styles.overlayButtonText}>Confirm</Text>
 			</TouchableOpacity>
 			<View style={{ height: 0.4 * wh }}>
@@ -139,6 +139,9 @@ const Checkout = ({ navigation }: any) => {
 			</View>
 			<View style={{ display: "flex", alignItems: "flex-start", padding: 20, width: ww, justifyContent: "flex-start" }}>
 				<Text style={{ fontFamily: "Inter_700Bold", fontSize: 20 }}>Total: ${getTotalCost()}</Text>
+				<Text style={{ fontFamily: "Inter_700Bold", fontSize: 20 }}>
+					Table: <TextInput placeholder="M32" style={{ fontFamily: "Inter_700Bold", fontSize: 20 }} placeholderTextColor={colours.grey} />
+				</Text>
 				<Text style={{ fontFamily: "Inter_700Bold", fontSize: 20 }}>Order Notes:</Text>
 			</View>
 			<TextInput
