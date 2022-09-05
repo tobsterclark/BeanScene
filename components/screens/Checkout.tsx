@@ -17,7 +17,7 @@ const Checkout = ({ navigation }: any) => {
 
 	const orderContext = useContext(OrderContext);
 
-	const [currentItem, setCurrentItem] = useState<number>(0);
+	const [currentItem, setCurrentItem] = useState<number>(-1);
 	const [modalView, setModalView] = useState<boolean>(false);
 	const [itemNotes, setItemNotes] = useState<string>("");
 
@@ -36,6 +36,7 @@ const Checkout = ({ navigation }: any) => {
 
 	const confirmEdits = () => {
 		orderContext.updateItem(currentItem, itemNotes);
+		setCurrentItem(-1);
 		setModalView(false);
 	};
 
@@ -54,6 +55,7 @@ const Checkout = ({ navigation }: any) => {
 		if (orderContext.items.length === 1) navigation.goBack();
 	};
 
+<<<<<<< HEAD
 	return (
 		<View style={[styles.backgroundContainer, { justifyContent: "flex-start", paddingVertical: 70, overflow: "hidden" }]}>
 			<Modal animationType="slide" visible={modalView} presentationStyle={"pageSheet"} transparent={true}>
@@ -69,41 +71,78 @@ const Checkout = ({ navigation }: any) => {
 						onPress={() => {
 							confirmEdits();
 						}}
+=======
+	const EditModal = () => {
+		if (currentItem === -1) return <View />;
+		else {
+			return (
+				<Modal animationType="slide" visible={modalView} presentationStyle={"pageSheet"} transparent={true}>
+					<View
+						style={[
+							{ position: "absolute", display: "flex", justifyContent: "flex-start", alignItems: "center", bottom: 0, backgroundColor: colours.primary, width: ww, borderRadius: 16 },
+							wh > 550 ? { height: 0.8 * wh } : { height: wh },
+							ww > 800 ? { height: wh } : { height: 0.8 * wh },
+						]}
+>>>>>>> d5663e19d6e288ab9551367a5e61e9f07d1d5dc4
 					>
-						<Text style={styles.overlayButtonText}>Confirm Edits</Text>
-					</TouchableOpacity>
-
-					<View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", alignItems: "center" }}>
 						<TouchableOpacity
-							style={{ padding: 5 }}
+							style={[styles.overlayButton, wh > 650 ? { bottom: 100 } : { bottom: 20 }]}
 							onPress={() => {
-								setModalView(!modalView);
+								confirmEdits();
 							}}
 						>
-							<ArrowLeft stroke={colours.black} />
+							<Text style={styles.overlayButtonText}>Confirm Edits</Text>
 						</TouchableOpacity>
-						<Text style={styles.modalTitle}>Add {orderContext.items[currentItem].name} to order</Text>
-						<ArrowLeft stroke={"transparent"} style={{ padding: 5 }} />
-					</View>
-					<View style={{ width: "100%", paddingHorizontal: 20, display: "flex", alignItems: "flex-start" }}>
-						<Text style={styles.modalHeader}>Item Details</Text>
-						<View style={{ paddingVertical: 20 }}>
-							<Text style={styles.modalBody}>Ingredients: {orderContext.items[currentItem].ingredients.join(", ")}</Text>
-							<Text style={styles.modalBold}>Cost: ${orderContext.items[currentItem].cost}</Text>
-							<Text style={styles.modalBody}>Calories: {orderContext.items[currentItem].calories}</Text>
+
+						<View style={[
+							{ position: "absolute", display: "flex", justifyContent: "flex-start", alignItems: "center", bottom: 0, backgroundColor: colours.primary, width: ww, borderRadius: 16 },
+							wh > 550 ? { height: 0.8 * wh } : { height: wh, borderRadius: 0 },
+							ww > 800 ? { height: wh, borderRadius: 0 } : { height: 0.8 * wh },
+						]}>
+							<TouchableOpacity
+								style={[styles.overlayButton, wh > 700 ? { bottom: 100 } : { bottom: 20 }]}
+								onPress={() => {
+									setCurrentItem(-1);
+									setModalView(!modalView);
+								}}
+							>
+								<ArrowLeft stroke={colours.black} />
+							</TouchableOpacity>
+							<Text style={styles.modalTitle}>Add {orderContext.items[currentItem].name} to order</Text>
+							<ArrowLeft stroke={"transparent"} style={{ padding: 5 }} />
 						</View>
-						<Text style={styles.modalHeader}>Item Notes</Text>
-						<TextInput
-							placeholder="Item notes"
-							value={itemNotes}
-							onChangeText={(text) => setItemNotes(text)}
-							placeholderTextColor={colours.grey}
-							style={{ backgroundColor: colours.background, width: ww - 40, height: 80, padding: 10, borderRadius: 16 }}
-						/>
+						<View style={{ width: "100%", paddingHorizontal: 20, display: "flex", alignItems: "flex-start" }}>
+							<Text style={styles.modalHeader}>Item Details</Text>
+							<View style={{ paddingVertical: 20 }}>
+								<Text style={styles.modalBody}>Ingredients: {orderContext.items[currentItem].ingredients.join(", ")}</Text>
+								<Text style={styles.modalBold}>Cost: ${orderContext.items[currentItem].cost}</Text>
+								<Text style={styles.modalBody}>Calories: {orderContext.items[currentItem].calories}</Text>
+							</View>
+							<Text style={styles.modalHeader}>Item Notes</Text>
+							<TextInput
+								placeholder="Item notes"
+								value={itemNotes}
+								onChangeText={(text) => setItemNotes(text)}
+								placeholderTextColor={colours.grey}
+								style={{ backgroundColor: colours.background, width: ww - 40, height: 80, padding: 10, borderRadius: 16 }}
+							/>
+						</View>
 					</View>
+<<<<<<< HEAD
 				</View>
 			</Modal>
 			<TouchableOpacity style={[styles.overlayButton, wh > 700 ? { bottom: 100 } : { bottom: 20 }]} onPress={() => confirmOrder()}>
+=======
+				</Modal>
+			);
+		}
+	};
+
+	return (
+		<View style={[styles.backgroundContainer, { justifyContent: "flex-start", paddingVertical: 70, overflow: "hidden" }]}>
+			<EditModal />
+			<TouchableOpacity style={[styles.overlayButton, wh > 650 ? { bottom: 100 } : { bottom: 20 }]} onPress={() => confirmOrder()}>
+>>>>>>> d5663e19d6e288ab9551367a5e61e9f07d1d5dc4
 				<Text style={styles.overlayButtonText}>Confirm</Text>
 			</TouchableOpacity>
 			<View style={{ height: 0.4 * wh }}>

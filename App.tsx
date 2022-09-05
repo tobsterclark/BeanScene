@@ -9,6 +9,7 @@ import { useFonts, Inter_200ExtraLight, Inter_900Black, Inter_400Regular, Inter_
 import ShoppingBag from "./components/svgs/shoppingBag";
 import Timer from "./components/svgs/timer";
 import Orders from "./components/screens/Orders";
+import manageFoods from "./components/screens/manageFoods";
 import { foodItem } from "./components/types/Types";
 import { OrderContext } from "./components/contexts/OrderContext";
 import Checkout from "./components/screens/Checkout";
@@ -103,6 +104,7 @@ const MainTabs = ({ navigation }: any) => {
 					},
 				}}
 			/>
+			<Tabs.Screen name="Manage Food Items" component={manageFoods} options={{ tabBarShowLabel: false }} />
 		</Tabs.Navigator>
 	);
 };
