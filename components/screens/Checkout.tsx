@@ -55,23 +55,6 @@ const Checkout = ({ navigation }: any) => {
 		if (orderContext.items.length === 1) navigation.goBack();
 	};
 
-<<<<<<< HEAD
-	return (
-		<View style={[styles.backgroundContainer, { justifyContent: "flex-start", paddingVertical: 70, overflow: "hidden" }]}>
-			<Modal animationType="slide" visible={modalView} presentationStyle={"pageSheet"} transparent={true}>
-				<View
-					style={[
-						{ position: "absolute", display: "flex", justifyContent: "flex-start", alignItems: "center", bottom: 0, backgroundColor: colours.primary, width: ww, borderRadius: 16 },
-						wh > 550 ? { height: 0.8 * wh } : { height: wh, borderRadius: 0 },
-						ww > 800 ? { height: wh, borderRadius: 0 } : { height: 0.8 * wh },
-					]}
-				>
-					<TouchableOpacity
-						style={[styles.overlayButton, wh > 700 ? { bottom: 100 } : { bottom: 20 }]}
-						onPress={() => {
-							confirmEdits();
-						}}
-=======
 	const EditModal = () => {
 		if (currentItem === -1) return <View />;
 		else {
@@ -83,7 +66,6 @@ const Checkout = ({ navigation }: any) => {
 							wh > 550 ? { height: 0.8 * wh } : { height: wh },
 							ww > 800 ? { height: wh } : { height: 0.8 * wh },
 						]}
->>>>>>> d5663e19d6e288ab9551367a5e61e9f07d1d5dc4
 					>
 						<TouchableOpacity
 							style={[styles.overlayButton, wh > 650 ? { bottom: 100 } : { bottom: 20 }]}
@@ -94,13 +76,9 @@ const Checkout = ({ navigation }: any) => {
 							<Text style={styles.overlayButtonText}>Confirm Edits</Text>
 						</TouchableOpacity>
 
-						<View style={[
-							{ position: "absolute", display: "flex", justifyContent: "flex-start", alignItems: "center", bottom: 0, backgroundColor: colours.primary, width: ww, borderRadius: 16 },
-							wh > 550 ? { height: 0.8 * wh } : { height: wh, borderRadius: 0 },
-							ww > 800 ? { height: wh, borderRadius: 0 } : { height: 0.8 * wh },
-						]}>
+						<View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", alignItems: "center" }}>
 							<TouchableOpacity
-								style={[styles.overlayButton, wh > 700 ? { bottom: 100 } : { bottom: 20 }]}
+								style={{ padding: 5 }}
 								onPress={() => {
 									setCurrentItem(-1);
 									setModalView(!modalView);
@@ -128,11 +106,6 @@ const Checkout = ({ navigation }: any) => {
 							/>
 						</View>
 					</View>
-<<<<<<< HEAD
-				</View>
-			</Modal>
-			<TouchableOpacity style={[styles.overlayButton, wh > 700 ? { bottom: 100 } : { bottom: 20 }]} onPress={() => confirmOrder()}>
-=======
 				</Modal>
 			);
 		}
@@ -142,7 +115,6 @@ const Checkout = ({ navigation }: any) => {
 		<View style={[styles.backgroundContainer, { justifyContent: "flex-start", paddingVertical: 70, overflow: "hidden" }]}>
 			<EditModal />
 			<TouchableOpacity style={[styles.overlayButton, wh > 650 ? { bottom: 100 } : { bottom: 20 }]} onPress={() => confirmOrder()}>
->>>>>>> d5663e19d6e288ab9551367a5e61e9f07d1d5dc4
 				<Text style={styles.overlayButtonText}>Confirm</Text>
 			</TouchableOpacity>
 			<View style={{ height: 0.4 * wh }}>
