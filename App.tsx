@@ -13,6 +13,7 @@ import ManageFoods from "./components/screens/ManageFoods";
 import { foodItem } from "./components/types/Types";
 import { OrderContext } from "./components/contexts/OrderContext";
 import Checkout from "./components/screens/Checkout";
+import User from "./components/svgs/User";
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -58,10 +59,10 @@ export default function App() {
 			}}
 		>
 			<NavigationContainer>
-				<Stack.Navigator initialRouteName="Login" screenOptions={{ headerTitleAlign: "center", headerLeft: () => null, headerTitleStyle: { fontFamily: "Inter_700Bold", fontSize: 24 }, headerTransparent: true }}>
+				<Stack.Navigator initialRouteName="Login" screenOptions={{ headerTitleAlign: "center", headerTitleStyle: { fontFamily: "Inter_700Bold", fontSize: 24 }, headerTransparent: true }}>
 					<Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 					<Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
-					<Stack.Screen name="Checkout" component={Checkout} />
+					<Stack.Screen name="Checkout" component={Checkout} options={{ headerBackVisible: true, headerBackTitleVisible: false }} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</OrderContext.Provider>
@@ -80,6 +81,18 @@ const MainTabs = ({ navigation }: any) => {
 				tabBarStyle: { borderTopWidth: 0, backgroundColor: "#E4E6F1", height: 100 },
 			}}
 		>
+			<Tabs.Screen
+				name="Staff"
+				component={ManageFoods}
+				options={{
+					tabBarShowLabel: false,
+					tabBarIcon: ({ focused, color }) => {
+						const size = 58;
+						if (focused) return <User width={size} height={size} stroke="#FF9472" />;
+						return <User width={size} height={size} stroke="#1B1C22" />;
+					},
+				}}
+			/>
 			<Tabs.Screen
 				name="New Order"
 				component={Home}

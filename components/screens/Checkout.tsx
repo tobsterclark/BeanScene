@@ -114,7 +114,7 @@ const Checkout = ({ navigation }: any) => {
 	return (
 		<View style={[styles.backgroundContainer, { justifyContent: "flex-start", paddingVertical: 70, overflow: "hidden" }]}>
 			<EditModal />
-			<TouchableOpacity style={[styles.overlayButton, wh > 650 ? { bottom: 100 } : { bottom: 20 }]} onPress={() => confirmOrder()}>
+			<TouchableOpacity style={[styles.overlayButton, wh > 720 ? { bottom: 100 } : { bottom: 20 }]} onPress={() => confirmOrder()}>
 				<Text style={styles.overlayButtonText}>Confirm</Text>
 			</TouchableOpacity>
 			<View style={{ height: 0.4 * wh }}>

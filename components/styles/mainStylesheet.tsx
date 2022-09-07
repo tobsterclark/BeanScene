@@ -36,7 +36,7 @@ export const mainStyles = () => {
 
 		itemHeader: { fontFamily: "Inter_500Medium", fontSize: 14, color: colours.black },
 		itemBody: { fontFamily: "Inter_200ExtraLight", fontSize: 12, color: colours.black, flex: 1 },
-		itemMainContainer: { display: "flex", flexDirection: "row", margin: 10, justifyContent: "space-between", width: "90%", maxWidth: 400 },
+		itemMainContainer: { display: "flex", flexDirection: "row", margin: 10, justifyContent: "space-between", width: ww * 0.9, maxWidth: 300 },
 		itemTextContainer: { display: "flex", flexDirection: "column", width: "60%" },
 
 		overlayButton: {

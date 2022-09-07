@@ -42,7 +42,6 @@ const Home = ({ navigation }: any) => {
 		fetch("https://localhost:44378/api/Food")
 			.then((response) => response.json())
 			.then((json) => {
-				console.log(json);
 				setAllFoods(json);
 			});
 	};
