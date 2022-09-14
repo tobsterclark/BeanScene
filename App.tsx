@@ -14,6 +14,7 @@ import { foodItem } from "./components/types/Types";
 import { OrderContext } from "./components/contexts/OrderContext";
 import Checkout from "./components/screens/Checkout";
 import User from "./components/svgs/User";
+import BulletedList from "./components/svgs/bulletedList";
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -117,7 +118,18 @@ const MainTabs = ({ navigation }: any) => {
 					},
 				}}
 			/>
-			<Tabs.Screen name="Manage Food Items" component={ManageFoods} options={{ tabBarShowLabel: false }} />
+			<Tabs.Screen
+				name="Manage Food Items"
+				component={ManageFoods}
+				options={{
+					tabBarShowLabel: false,
+					tabBarIcon: ({ focused, color }) => {
+						const size = 58;
+						if (focused) return <BulletedList width={size} height={size} stroke="#FF9472" />;
+						return <BulletedList width={size} height={size} stroke="#1B1C22" />;
+					},
+				}}
+			/>
 		</Tabs.Navigator>
 	);
 };
